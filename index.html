@@ -1,0 +1,463 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>NLTK</title>
+  <link rel="stylesheet" href="css/reveal.css">
+  <link rel="stylesheet" href="css/theme/night.css">
+  <link rel="stylesheet" href="lib/css/zenburn.css">
+  <script>
+    var link = document.createElement( 'link' );
+    link.rel = 'stylesheet';
+    link.type = 'text/css';
+    link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+    document.getElementsByTagName( 'head' )[0].appendChild( link );
+  </script>
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+      <section>
+        <h3>What is Natural Language Processing?</h3>
+        <ul>
+          <li class="fragment">
+            Natural Language Processing (NLP) is the use of computers to process written and spoken human language.
+          </li>
+          <li class="fragment">
+            Designing and building a computer system that would analyze, understand and generate languages that humans use naturally, so that eventually you could address your computer as though you were addressing another person
+          </li>
+          <li class="fragment">
+            It is a field of study which falls under the category of machine learning and more specifically computational linguistics.
+          </li>
+        </ul>
+      </section>
+      <section>
+        <h3>Why NLTK?</h3>
+        <ul>
+          <li class="fragment">
+            The “Natural Language Toolkit” is a python module that provides a variety of functionality that will aide us in processing text.
+          </li>
+          <li>It provides easy-to-use interfaces to over 50 corpora and lexical resources such as WordNet.</li>
+          <li>It provides a suite of text processing libraries for classification, tokenization, stemming, tagging, parsing, and semantic reasoning.</li>
+        </ul>
+      </section>
+      <section>
+        <h3>Installation</h3>
+        <section>
+          Open your terminal and run the following command:
+          <pre><code data-trim data-noescape>
+            pip install nltk
+          </code>if using Python 2</pre>
+          or
+          <pre><code data-trim data-noescape>
+            pip3 install nltk
+          </code>if using Python 3</pre>
+        </section>
+        <section>
+          Once completed, Run the following in your python environment:
+          <pre><code data-trim data-noescape>
+            import nltk
+            nltk.download()
+          </code></pre>
+        </section>
+        <section>
+          You will be presented with the following output:
+          <pre><code data-trim data-noescape>
+            NLTK Downloader
+            ---------------------------------------------------------------------
+            d) Download   l) List    u) Update   c) Config   h) Help   q) Quit
+            ---------------------------------------------------------------------
+            Downloader>
+          </code>enter d to download and enter 'all' as identifier.</pre>
+        </section>
+        <section>
+          Alternatively, You can use the following code to directly download everything:
+          <pre><code data-trim data-noescape>
+            import nltk
+            nltk.download('all')
+          </code></pre>
+        </section>
+      </section>
+      <section>
+        <h3>Topics</h3>
+        <ol>
+          <li>Tokenization</li>
+          <li>Stemming</li>
+          <li>Lemmatization</li>
+          <li>POS Tagging</li>
+          <li>Chunking</li>
+          <li>Stopwords Removal</li>
+        </ol>
+      </section>
+      <section>
+        <section>
+          <h3>Topics</h3>
+          <ol>
+            <li><mark>Tokenization</mark></li>
+            <li>Stemming</li>
+            <li>Lemmatization</li>
+            <li>POS Tagging</li>
+            <li>Chunking</li>
+            <li>Stopwords Removal</li>
+          </ol>
+        </section>
+        <section>
+          <h3>Tokenization</h3>
+          <p>Today we'll be covering 3 most popular types of Tokenizers.</p>
+          <ol>
+            <li>Sentence Tokenizer</li>
+            <li>Word Tokenizer</li>
+            <li>WordPunct Tokenizer</li>
+          </ol>
+        </section>
+        <section>
+          Do you know how NLTK works? It's actually quite interesting. Let's try something in this lecture. My name is Jitesh Pubreja and I'll be delivering this lecture today.
+        </section>
+        <section>
+          <h5>Sentence Tokenizer</h5>
+          <pre>
+            0 -> Do you know how NLTK works?
+            1 -> It's actually quite interesting.
+            2 -> Let's try something in this lecture.
+            3 -> My name is Jitesh Pubreja and I'll be delivering this lecture today.
+          </pre>
+        </section>
+        <section>
+          <h5>Word and WordPunct Tokenizers</h5>
+          <pre>Word Tokenizer</pre>
+          ['Do', 'you', 'know', 'how', 'NLTK', 'works', '?', 'It', "'s", 'actually', 'quite', 'interesting', '.', 'Let', "'s", 'try', 'something', 'in', 'this', 'lecture', '.', 'My', 'name', 'is', 'Jitesh', 'Pubreja', 'and', 'I', "'ll", 'be', 'delivering', 'this', 'lecture', 'today', '.']
+          <pre>WordPunct Tokenizer</pre>
+          ['Do', 'you', 'know', 'how', 'NLTK', 'works', '?', 'It', "'", 's', 'actually', 'quite', 'interesting', '.', 'Let', "'", 's', 'try', 'something', 'in', 'this', 'lecture', '.', 'My', 'name', 'is', 'Jitesh', 'Pubreja', 'and', 'I', "'", 'll', 'be', 'delivering', 'this', 'lecture', 'today', '.']
+        </section>
+      </section>
+      <section>
+        <section>
+          <h3>Topics</h3>
+          <ol>
+            <li><del>Tokenization</del></li>
+            <li><mark>Stemming</mark></li>
+            <li>Lemmatization</li>
+            <li>POS Tagging</li>
+            <li>Chunking</li>
+            <li>Stopwords Removal</li>
+          </ol>
+        </section>
+        <section>
+          <h3>Stemming</h3>
+          <p>We'll be covering 3 Popular Stemmers in NLTK.</p>
+          <ol>
+            <li>Porter</li>
+            <li>Lancaster</li>
+            <li>Snowball</li>
+          </ol>
+        </section>
+        <section>
+          <ul>
+            <li>writing</li>
+            <li>working</li>
+            <li>calves</li>
+            <li>wolves</li>
+            <li>branded</li>
+            <li>horse</li>
+            <li>randomize</li>
+            <li>possibly</li>
+            <li>provision</li>
+            <li>hospital</li>
+            <li>scratchy</li>
+            <li>kindness</li>
+            <li>Jitesh</li>
+            <li>Pubreja</li>
+          </ul>
+        </section>
+        <section>
+          <pre>
+              Input           Porter        Lancaster         Snowball
+              ========== ================ ================ ================
+                 writing            write             writ            write
+                 working             work             work             work
+                  calves             calv             calv             calv
+                  wolves             wolv             wolv             wolv
+                 branded            brand            brand            brand
+                   horse             hors             hors             hors
+               randomize           random           random           random
+                possibly          possibl             poss          possibl
+               provision           provis           provid           provis
+                hospital           hospit           hospit           hospit
+                scratchy         scratchi         scratchy         scratchi
+                kindness             kind             kind             kind
+                  Jitesh           jitesh           jitesh           jitesh
+                 Pubreja          pubreja           pubrej          pubreja
+          </pre>
+        </section>
+        <section>
+          <h5>Languages Supported by Snowball Stemmer</h5>
+          <pre>
+              arabic
+              danish
+              dutch
+              english
+              finnish
+              french
+              german
+              hungarian
+              italian
+              norwegian
+              porter
+              portuguese
+              romanian
+              russian
+              spanish
+              swedish
+          </pre>
+        </section>
+      </section>
+      <section>
+        <section>
+          <h3>Topics</h3>
+          <ol>
+            <li><del>Tokenization</del></li>
+            <li><del>Stemming</del></li>
+            <li><mark>Lemmatization</mark></li>
+            <li>POS Tagging</li>
+            <li>Chunking</li>
+            <li>Stopwords Removal</li>
+          </ol>
+        </section>
+        <section>
+          <h3>Lemmatization</h3>
+          <p>We'll be covering the wordnet lemmatizer.</p>
+        </section>
+        <section>
+          <ul>
+            <li>writing</li>
+            <li>working</li>
+            <li>calves</li>
+            <li>wolves</li>
+            <li>branded</li>
+            <li>horse</li>
+            <li>randomize</li>
+            <li>possibly</li>
+            <li>provision</li>
+            <li>hospital</li>
+            <li>scratchy</li>
+            <li>kindness</li>
+            <li>Jitesh</li>
+            <li>Pubreja</li>
+          </ul>
+        </section>
+        <section>
+        <pre>
+            Lemmatizers
+            Input   WordNet Noun Lemmatizer   WordNet Verb Lemmatizer
+       ========== ========================= =========================
+          writing                   writing                     write
+          working                   working                      work
+           calves                      calf                     calve
+           wolves                      wolf                    wolves
+          branded                   branded                     brand
+            horse                     horse                     horse
+        randomize                 randomize                 randomize
+         possibly                  possibly                  possibly
+        provision                 provision                 provision
+         hospital                  hospital                  hospital
+         scratchy                  scratchy                  scratchy
+         kindness                  kindness                  kindness
+           Jitesh                    Jitesh                    Jitesh
+          Pubreja                   Pubreja                   Pubreja
+        </pre>
+        </section>
+      </section>
+      <section>
+        <section>
+          <h3>Topics</h3>
+          <ol>
+            <li><del>Tokenization</del></li>
+            <li><del>Stemming</del></li>
+            <li><del>Lemmatization</del></li>
+            <li><mark>POS Tagging</mark></li>
+            <li>Chunking</li>
+            <li>Stopwords Removal</li>
+          </ol>
+        </section>
+        <section>
+          <h3>POS Tagging</h3>
+        </section>
+        <section>
+          <ul>
+            <li>writing</li>
+            <li>working</li>
+            <li>calves</li>
+            <li>wolves</li>
+            <li>branded</li>
+            <li>horse</li>
+            <li>randomize</li>
+            <li>possibly</li>
+            <li>provision</li>
+            <li>hospital</li>
+            <li>scratchy</li>
+            <li>kindness</li>
+            <li>Jitesh</li>
+            <li>Pubreja</li>
+          </ul>
+        </section>
+        <section>
+          <pre>
+              POS Tagging
+              Input       POS Tag	Meaning of POS Tag
+====================    ==========	==================
+            writing ->        VBG	verb, present participle or gerund
+            working ->        VBG	verb, present participle or gerund
+             calves ->        NNS	noun, common, plural
+             wolves ->        NNS	noun, common, plural
+            branded ->        VBD	verb, past tense
+              horse ->         NN	noun, common, singular or mass
+          randomize ->         NN	noun, common, singular or mass
+           possibly ->         RB	adverb
+          provision ->         NN	noun, common, singular or mass
+           hospital ->         NN	noun, common, singular or mass
+           scratchy ->         NN	noun, common, singular or mass
+           kindness ->         NN	noun, common, singular or mass
+             Jitesh ->        NNP	noun, proper, singular
+            Pubreja ->        NNP	noun, proper, singular
+          </pre>
+        </section>
+      </section>
+      <section>
+        <section>
+          <h3>Topics</h3>
+          <ol>
+            <li><del>Tokenization</del></li>
+            <li><del>Stemming</del></li>
+            <li><del>Lemmatization</del></li>
+            <li><del>POS Tagging</del></li>
+            <li><mark>Chunking</mark></li>
+            <li>Stopwords Removal</li>
+          </ol>
+        </section>
+        <section>
+          <h3>Chunking</h3>
+        </section>
+        <section>
+          <pre><code data-trim data-noescape>
+              def chunker(input_words,n):
+              words = input_words.split(" ")
+              output = []
+              current_chunk = []
+              count = 0
+              for w in words:
+                  current_chunk.append(w)
+                  count = count + 1
+                  if(count == n):
+                      output.append(current_chunk)
+                      current_chunk = []
+                      count = 0
+              return output
+          </code></pre>
+        </section>
+        <section>
+          Do you know how NLTK works? It's actually quite interesting. Let's try something in this lecture. My name is Jitesh Pubreja and I'll be delivering this lecture today.
+        </section>
+        <section>
+          <pre><code data-trim data-noescape>
+            chunker(text,3)
+          </code></pre>
+          <pre>
+            ['Do', 'you', 'know']
+            ['how', 'NLTK', 'works?']
+            ["It's", 'actually', 'quite']
+            ['interesting.', "Let's", 'try']
+            ['something', 'in', 'this']
+            ['lecture.', 'My', 'name']
+            ['is', 'Jitesh', 'Pubreja']
+            ['and', "I'll", 'be']
+            ['delivering', 'this', 'lecture.']
+          </pre>
+        </section>
+      </section>
+      <section>
+        <section>
+          <h3>Topics</h3>
+          <ol>
+            <li><del>Tokenization</del></li>
+            <li><del>Stemming</del></li>
+            <li><del>Lemmatization</del></li>
+            <li><del>POS Tagging</del></li>
+            <li><del>Chunking</del></li>
+            <li><mark>Stopwords Removal</mark></li>
+          </ol>
+        </section>
+        <section>
+          <h3>Stopwords Removal</h3>
+        </section>
+        <section>
+          Do you know how NLTK works? It's actually quite interesting. Let's try something in this lecture. My name is Jitesh Pubreja and I'll be delivering this lecture today.
+        </section>
+        <section>
+          <section>
+            <pre>WordPunct Tokenizer</pre>
+            ['Do', 'you', 'know', 'how', 'NLTK', 'works', '?', 'It', "'", 's', 'actually', 'quite', 'interesting', '.', 'Let', "'", 's', 'try', 'something', 'in', 'this', 'lecture', '.', 'My', 'name', 'is', 'Jitesh', 'Pubreja', 'and', 'I', "'", 'll', 'be', 'delivering', 'this', 'lecture', 'today', '.']
+          </section>
+        </section>
+        <section>
+          <ul>
+            <li>you</li>
+            <li>how</li>
+            <li>s</li>
+            <li>s</li>
+            <li>in</li>
+            <li>this</li>
+            <li>is</li>
+            <li>and</li>
+            <li>ll</li>
+            <li>be</li>
+            <li>this</li>
+          </ul>
+        </section>
+      </section>
+      <section>
+        <h3>Other NLTK Features</h3>
+        <ul>
+          <li>Clustering</li>
+          <li>Metrics</li>
+          <li>Classification</li>
+          <li>Feature Extraction</li>
+          <li>Semantic Reasoning</li>
+          <li>and a lot more.....</li>
+        </ul>
+      </section>
+      <section>
+        <h3>Useful Links</h3>
+        <ul>
+          <li>http://nltk.org</li>
+          <li>http://text-processing.com</li>
+        </ul>
+      </section>
+      <section>
+        <h3>Resources</h3>
+        <ul>
+          <li>Code - https://github.com/jiteshpubreja/wsw</li>
+          <li>Slides - http://jiteshpubreja.github.io/wsw-slides</li>
+        </ul>
+      </section>
+      <section>Thank You...</section>
+    </div>
+  </div>
+  <script src="lib/js/head.min.js"></script>
+  <script src="js/reveal.js"></script>
+  <script>
+    Reveal.initialize({
+      width: 1366,
+      height: 768,
+      pdfSeparateFragments: false,
+      fragmentInURL: true,
+      dependencies: [
+      { src: 'plugin/markdown/marked.js' },
+      { src: 'plugin/markdown/markdown.js' },
+      { src: 'plugin/notes/notes.js', async: true },
+      { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+      ]
+    });
+  </script>
+</body>
+</html>
