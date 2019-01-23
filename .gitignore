@@ -12,3 +12,12 @@ package-lock.json
 .sass-cache
 css/reveal.min.css
 js/reveal.min.js
+.travis.yml
+bower.json
+CONTRIBUTING.md
+demo.html
+Gruntfile.js
+LICENSE
+README.md
+package.json
+test
